@@ -1,7 +1,7 @@
 const cors = require("cors")
 const express = require("express")
 const mongoose = require("mongoose")
-const bcrypt = require("bcryptjs")
+const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
 const serverlesshttp = require("serverless-http") 
@@ -609,5 +609,3 @@ initializeDefaultUsers().then(() => {
     console.log("👤 Default users created (check console for credentials)")
   })
 })
-
-module.exports.handler = serverless(app);
