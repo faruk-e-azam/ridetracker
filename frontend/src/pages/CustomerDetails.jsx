@@ -1,7 +1,7 @@
 
 
 import { useEffect, useState } from "react"
-import { API_ENDPOINTS } from "../config/api"
+import "../styles/customerDetails.css"
 
 const CustomerDetails = () => {
   const [customerCount, setCustomerCount] = useState(0)
@@ -13,7 +13,7 @@ const CustomerDetails = () => {
       setLoading(true)
       setError("")
 
-      const response = await fetch(API_ENDPOINTS.CUSTOMERS)
+      const response = await fetch(`http://localhost:5000/api/customer`)
       if (!response.ok) {
         throw new Error("Failed to fetch customer data")
       }

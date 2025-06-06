@@ -2,15 +2,14 @@
 
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { API_ENDPOINTS } from "../config/api"
-import "../styles/Signup.css"
+import "../styles/signup.css"
 
 const Signup = () => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
     username: "",
     password: "",
-    confirmPassword: "",
+    confirmPassword: "",  
     email: "",
     fullName: "",
   })
@@ -90,7 +89,7 @@ const Signup = () => {
     }
 
     try {
-      const response = await fetch(API_ENDPOINTS.REGISTER, {
+      const response = await fetch(`http://localhost:5000/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

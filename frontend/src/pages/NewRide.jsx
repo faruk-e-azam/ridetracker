@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { API_ENDPOINTS } from "../config/api"
 import "../styles/ride-form.css"
 
 const NewRide = () => {
@@ -25,7 +24,6 @@ const NewRide = () => {
   const validateField = (name, value) => {
     const newErrors = { ...errors }
 
-    // eslint-disable-next-line default-case
     switch (name) {
       case "customerName":
         if (value.length < 2) {
@@ -86,6 +84,8 @@ const NewRide = () => {
           delete newErrors.date
         }
         break
+      default:
+        break
     }
 
     setErrors(newErrors)
@@ -113,7 +113,7 @@ const NewRide = () => {
         date: formData.date,
       }
 
-      const response = await fetch(API_ENDPOINTS.CUSTOMERS, {
+      const response = await fetch(`http://localhost:5000/api/customer`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(submitData),

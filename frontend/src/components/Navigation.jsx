@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { NavLink, useLocation } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
-import "../styles/Navigation.css"
+import "../styles/navigation.css"
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)

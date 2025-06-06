@@ -1,9 +1,8 @@
 
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { API_ENDPOINTS } from "../config/api"
 import { useAuth } from "../context/AuthContext"
-import "../styles/Login.css"
+import "../styles/login.css"
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ username: "", password: "" })
@@ -18,7 +17,7 @@ const Login = () => {
     setError("")
 
     try {
-      const response = await fetch(API_ENDPOINTS.LOGIN, {
+      const response = await fetch(`http://localhost:5000/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -107,26 +106,6 @@ const Login = () => {
 
         <div className="signup-link">
           Don't have an account? <Link to="/signup">Sign up</Link>
-        </div>
-
-        <div className="demo-credentials">
-          <p>
-            <strong>Demo Credentials:</strong>
-          </p>
-          <div className="demo-section">
-            <p>
-              <strong>Admin Access:</strong>
-            </p>
-            <p>Username: admin</p>
-            <p>Password: admin123</p>
-          </div>
-          <div className="demo-section">
-            <p>
-              <strong>Customer Access:</strong>
-            </p>
-            <p>Username: customer</p>
-            <p>Password: customer123</p>
-          </div>
         </div>
       </div>
     </div>

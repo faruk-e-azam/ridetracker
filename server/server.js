@@ -4,7 +4,6 @@ const mongoose = require("mongoose")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
-const serverlesshttp = require("serverless-http") 
 
 const app = express()
 const PORT = 5000

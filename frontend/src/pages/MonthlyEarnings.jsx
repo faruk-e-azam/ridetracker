@@ -1,8 +1,7 @@
 
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { API_ENDPOINTS } from "../config/api"
-import "../styles/MonthlyEarnings.css"
+import "../styles/monthlyEarnings.css"
 
 const MonthlyEarnings = () => {
   const [monthlyData, setMonthlyData] = useState([])
@@ -36,7 +35,7 @@ const MonthlyEarnings = () => {
       setLoading(true)
       setError("")
 
-      const response = await fetch(API_ENDPOINTS.CUSTOMERS)
+      const response = await fetch(`http://localhost:5000/api/customer`)
       if (!response.ok) {
         throw new Error("Failed to fetch customer data")
       }
