@@ -1,11 +1,12 @@
+"use client"
 
-
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { useLocation, useNavigate } from "react-router-dom"
 import "../styles/ride-form.css"
 
 const NewRide = () => {
   const navigate = useNavigate()
+  const location = useLocation()
   const [formData, setFormData] = useState({
     customerName: "",
     contactNumber: "",
@@ -20,6 +21,13 @@ const NewRide = () => {
   const [errors, setErrors] = useState({})
   const [showSuccess, setShowSuccess] = useState(false)
   const [apiError, setApiError] = useState("")
+
+  // Check if this is a quick ride and prefill data
+  useEffect(() => {
+    if (location.state && location.state.prefillData) {
+      setFormData(location.state.prefillData)
+    }
+  }, [location.state])
 
   const validateField = (name, value) => {
     const newErrors = { ...errors }
@@ -113,7 +121,7 @@ const NewRide = () => {
         date: formData.date,
       }
 
-      const response = await fetch(`http://localhost:5000/api/customer`, {
+      const response = await fetch(`${process.env.BACKEND_URL}/api/customer`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(submitData),
@@ -154,6 +162,11 @@ const NewRide = () => {
         <div className="new-ride-header">
           <h1>🚗 New Customer Entry</h1>
           <p>Fill in the details for the new ride entry</p>
+          {location.state && location.state.isQuickRide && (
+            <div className="quick-ride-notice">
+              <span>⚡ Quick Ride - Pre-filled from customer data</span>
+            </div>
+          )}
         </div>
 
         {apiError && <div className="error-message">⚠️ {apiError}</div>}
